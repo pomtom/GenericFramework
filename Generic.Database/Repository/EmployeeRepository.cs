@@ -1,10 +1,8 @@
 ﻿using Generic.Database.Poco;
 using Generic.Framework;
-using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Generic.Database.Repository
 {
@@ -14,6 +12,26 @@ namespace Generic.Database.Repository
         {
             var query = GetAll().ToList();
             return query;
+        }
+
+        public void InsertEmployeeUsingSP(Employee emp)
+        {
+            try
+            {
+                SqlParameter[] sqlParams = new SqlParameter[]
+                   {
+                    new SqlParameter { ParameterName = "@Name",  Value =emp.Name , Direction = System.Data.ParameterDirection.Input},
+                    new SqlParameter { ParameterName = "@Email",  Value =emp.Email, Direction = System.Data.ParameterDirection.Input },
+                    new SqlParameter { ParameterName = "@Dob",  Value =emp.DOB, Direction = System.Data.ParameterDirection.Input },
+                    new SqlParameter { ParameterName = "@adress",  Value = emp.Address, Direction = System.Data.ParameterDirection.Input }
+                   };
+
+                this.Context.Database.ExecuteSqlCommand("USP_InsertEmploee @Name, @Email, @Dob, @adress", sqlParams);
+            }
+            catch (System.Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

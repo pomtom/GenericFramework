@@ -1,4 +1,5 @@
 ﻿using Generic.Business.Service;
+using Generic.Models;
 using System;
 using System.Net;
 using System.Net.Http;
@@ -37,6 +38,7 @@ namespace Generic.Controllers
         // POST api/values
         public void Post([FromBody]string value)
         {
+            _employeeservice.InsertEmployeeUsingSP(value);
         }
 
         // PUT api/values/5

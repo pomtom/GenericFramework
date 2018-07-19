@@ -10,5 +10,7 @@ namespace Generic.Database.Repository
     public interface IEmployeeRepository
     {
         IEnumerable<Employee> GetAllEmployee();
+
+        void InsertEmployeeUsingSP(Employee emp);
     }
 }

@@ -20,5 +20,16 @@ namespace Generic.Business.Service
             string allemployee = JsonConvert.SerializeObject(employees);
             return allemployee;
         }
+
+        public void InsertEmployeeUsingSP(string emp)
+        {
+            //var employee = JsonConvert.DeserializeObject<Employee>(emp);
+            Employee employee = new Employee();
+            employee.Name = "Sachin";
+            employee.Email = "sachin@gmail.com";
+            employee.DOB = "10/09/1990";
+            employee.Address = "Mumbai";
+            _employeeRepository.InsertEmployeeUsingSP(employee);
+        }
     }
 }
