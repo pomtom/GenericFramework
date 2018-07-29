@@ -33,5 +33,24 @@ namespace Generic.Database.Repository
                 throw;
             }
         }
+
+        public Employee GetEmployeeById(int id)
+        {
+            var employee = FindByFunc(a => a.Id == id).FirstOrDefault();
+            return employee;
+        }
+
+        public void UpdateEmployee(Employee emp)
+        {
+            EditEntity(emp);
+            SaveEntity();
+        }
+
+        public void DeleteEmployee(int id)
+        {
+            var employee = GetEmployeeById(id);
+            DeleteEntity(employee);
+            SaveEntity();
+        }
     }
 }

@@ -1,8 +1,7 @@
 ﻿using Generic.Business.Service;
-using Generic.Models;
+using Generic.Database.Poco;
 using System;
-using System.Net;
-using System.Net.Http;
+using System.Collections.Generic;
 using System.Web.Http;
 
 namespace Generic.Controllers
@@ -15,13 +14,13 @@ namespace Generic.Controllers
         {
             this._employeeservice = employeeservice;
         }
-        // GET api/values
-        public HttpResponseMessage Get()
+
+        public IEnumerable<Employee> Get()
         {
             try
             {
-                string response = _employeeservice.GetAllEmployee();
-                return Request.CreateResponse(HttpStatusCode.OK, response);
+                var response = _employeeservice.GetAllEmployee();
+                return response;
             }
             catch (Exception)
             {
@@ -30,25 +29,27 @@ namespace Generic.Controllers
         }
 
         // GET api/values/5
-        public string Get(int id)
+        public Employee Get(int id)
         {
-            return "value";
+            return _employeeservice.GetEmployeeById(id);
         }
 
         // POST api/values
-        public void Post([FromBody]string value)
+        public void Post([FromBody]Employee value)
         {
             _employeeservice.InsertEmployeeUsingSP(value);
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        public void Put([FromBody]Employee value)
         {
+            _employeeservice.UpdateEmployee(value);
         }
 
         // DELETE api/values/5
         public void Delete(int id)
         {
+            _employeeservice.DeleteEmployee(id);
         }
     }
 }

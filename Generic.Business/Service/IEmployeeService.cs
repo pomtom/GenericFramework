@@ -1,11 +1,18 @@
 ﻿using Generic.Database.Poco;
+using System.Collections.Generic;
 
 namespace Generic.Business.Service
 {
     public interface IEmployeeService
     {
-        string GetAllEmployee();
+        IEnumerable<Employee> GetAllEmployee();
 
-        void InsertEmployeeUsingSP(string emp);
+        void InsertEmployeeUsingSP(Employee emp);
+
+        Employee GetEmployeeById(int id);
+
+        void UpdateEmployee(Employee emp);
+
+        void DeleteEmployee(int id);
     }
 }

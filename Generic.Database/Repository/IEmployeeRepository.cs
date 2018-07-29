@@ -1,9 +1,5 @@
 ﻿using Generic.Database.Poco;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Generic.Database.Repository
 {
@@ -12,5 +8,11 @@ namespace Generic.Database.Repository
         IEnumerable<Employee> GetAllEmployee();
 
         void InsertEmployeeUsingSP(Employee emp);
+
+        Employee GetEmployeeById(int id);
+
+        void UpdateEmployee(Employee emp);
+
+        void DeleteEmployee(int id);
     }
 }

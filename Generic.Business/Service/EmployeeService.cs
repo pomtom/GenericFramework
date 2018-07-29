@@ -1,6 +1,5 @@
 ﻿using Generic.Database.Poco;
 using Generic.Database.Repository;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace Generic.Business.Service
@@ -14,22 +13,32 @@ namespace Generic.Business.Service
             this._employeeRepository = employeeRepository;
         }
 
-        public string GetAllEmployee()
+
+        public IEnumerable<Employee> GetAllEmployee()
         {
             IEnumerable<Employee> employees = _employeeRepository.GetAllEmployee();
-            string allemployee = JsonConvert.SerializeObject(employees);
-            return allemployee;
+            return employees;
         }
 
-        public void InsertEmployeeUsingSP(string emp)
+        public Employee GetEmployeeById(int id)
         {
-            //var employee = JsonConvert.DeserializeObject<Employee>(emp);
-            Employee employee = new Employee();
-            employee.Name = "Sachin";
-            employee.Email = "sachin@gmail.com";
-            employee.DOB = "10/09/1990";
-            employee.Address = "Mumbai";
+            var employee = _employeeRepository.GetEmployeeById(id);
+            return employee;
+        }
+
+        public void InsertEmployeeUsingSP(Employee employee)
+        {
             _employeeRepository.InsertEmployeeUsingSP(employee);
+        }
+
+        public void UpdateEmployee(Employee emp)
+        {
+            _employeeRepository.UpdateEmployee(emp);
+        }
+
+        public void DeleteEmployee(int id)
+        {
+            _employeeRepository.DeleteEmployee(id);
         }
     }
 }
