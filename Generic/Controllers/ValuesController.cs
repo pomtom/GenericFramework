@@ -15,6 +15,12 @@ namespace Generic.Controllers
             this._employeeservice = employeeservice;
         }
 
+        [HttpGet]
+        public string Ping()
+        {
+            return Environment.MachineName.ToString();
+        }
+
         public IEnumerable<Employee> Get()
         {
             try
