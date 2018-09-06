@@ -11,7 +11,7 @@ namespace Generic.MVC.Controllers
 {
     public class EmployeesController : Controller
     {
-        private static readonly string uri = "http://localhost:59031/api/";
+        private static readonly string uri = "http://localhost:59031/api/Values/";
 
 
         // GET: Employees
@@ -21,7 +21,7 @@ namespace Generic.MVC.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(uri);
-                var responseTask = client.GetAsync("Values");
+                var responseTask = client.GetAsync("Get");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -52,7 +52,7 @@ namespace Generic.MVC.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(uri);
-                var responseTask = client.GetAsync("Values/" + id);
+                var responseTask = client.GetAsync("Get/" + id);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -82,7 +82,7 @@ namespace Generic.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Email,DOB,Address")] Employee employee)
+        public async Task<ActionResult> Create([Bind(Include = "Id,Name,Age,BirthDate,Gender,Salary")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -92,7 +92,7 @@ namespace Generic.MVC.Controllers
                     var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
 
                     client.BaseAddress = new Uri(uri);
-                    var responseTask = client.PostAsync("Values", content);
+                    var responseTask = client.PostAsync("Post", content);
                     responseTask.Wait();
 
                     var result = responseTask.Result;
@@ -117,7 +117,7 @@ namespace Generic.MVC.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(uri);
-                var responseTask = client.GetAsync("Values/" + id);
+                var responseTask = client.GetAsync("Get/" + id);
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -141,7 +141,7 @@ namespace Generic.MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Email,DOB,Address")] Employee employee)
+        public async Task<ActionResult> Edit([Bind(Include = "Id,Name,Age,BirthDate,Gender,Salary")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -153,7 +153,7 @@ namespace Generic.MVC.Controllers
                         var content = new StringContent(jsonObject.ToString(), Encoding.UTF8, "application/json");
 
                         client.BaseAddress = new Uri(uri);
-                        var responseTask = client.PutAsync("Values", content);
+                        var responseTask = client.PutAsync("Put", content);
                         responseTask.Wait();
 
                         var result = responseTask.Result;
@@ -183,7 +183,7 @@ namespace Generic.MVC.Controllers
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri(uri);
-                var responseTask = client.DeleteAsync("Values/" + id);
+                var responseTask = client.DeleteAsync("Delete/" + id);
                 responseTask.Wait();
 
                 var result = responseTask.Result;

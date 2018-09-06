@@ -14,6 +14,12 @@ namespace Generic.Database.Repository
             return query;
         }
 
+        public void InsertEmployeeUsingEE(Employee emp)
+        {
+            AddEntity(emp);
+            SaveEntity();
+        }
+
         public void InsertEmployeeUsingSP(Employee emp)
         {
             try
@@ -21,14 +27,14 @@ namespace Generic.Database.Repository
                 SqlParameter[] sqlParams = new SqlParameter[]
                    {
                     new SqlParameter { ParameterName = "@Name",  Value =emp.Name , Direction = System.Data.ParameterDirection.Input},
-                    new SqlParameter { ParameterName = "@Email",  Value =emp.Email, Direction = System.Data.ParameterDirection.Input },
-                    new SqlParameter { ParameterName = "@Dob",  Value =emp.DOB, Direction = System.Data.ParameterDirection.Input },
-                    new SqlParameter { ParameterName = "@adress",  Value = emp.Address, Direction = System.Data.ParameterDirection.Input }
+                    new SqlParameter { ParameterName = "@Email",  Value =emp.Age, Direction = System.Data.ParameterDirection.Input },
+                    new SqlParameter { ParameterName = "@Dob",  Value =emp.BirthDate, Direction = System.Data.ParameterDirection.Input },
+                    new SqlParameter { ParameterName = "@adress",  Value = emp.Gender, Direction = System.Data.ParameterDirection.Input }
                    };
 
                 this.Context.Database.ExecuteSqlCommand("USP_InsertEmploee @Name, @Email, @Dob, @adress", sqlParams);
             }
-            catch (System.Exception ex)
+            catch (System.Exception)
             {
                 throw;
             }
@@ -52,5 +58,7 @@ namespace Generic.Database.Repository
             DeleteEntity(employee);
             SaveEntity();
         }
+
+
     }
 }

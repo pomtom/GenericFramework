@@ -28,7 +28,7 @@ namespace Generic.Business.Service
 
         public void InsertEmployeeUsingSP(Employee employee)
         {
-            _employeeRepository.InsertEmployeeUsingSP(employee);
+            _employeeRepository.InsertEmployeeUsingEE(employee);
         }
 
         public void UpdateEmployee(Employee emp)

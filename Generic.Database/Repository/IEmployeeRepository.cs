@@ -7,6 +7,7 @@ namespace Generic.Database.Repository
     {
         IEnumerable<Employee> GetAllEmployee();
 
+        void InsertEmployeeUsingEE(Employee emp);
         void InsertEmployeeUsingSP(Employee emp);
 
         Employee GetEmployeeById(int id);
