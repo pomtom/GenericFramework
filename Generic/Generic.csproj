@@ -272,6 +272,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\zixer - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\zixer - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Generic.Business\Generic.Business.csproj">

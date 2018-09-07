@@ -11,7 +11,7 @@ namespace Generic.MVC.Controllers
 {
     public class EmployeesController : Controller
     {
-        private static readonly string uri = "http://localhost:59031/api/Values/";
+        private static readonly string uri = "http://zixer.azurewebsites.net/api/values/";
 
 
         // GET: Employees
