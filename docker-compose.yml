@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  generic:
+    image: ${DOCKER_REGISTRY-}generic
+    build:
+      context: .\Generic
+      dockerfile: Dockerfile
+
+  generic.mvc:
+    image: ${DOCKER_REGISTRY-}genericmvc
+    build:
+      context: .\Generic.MVC
+      dockerfile: Dockerfile
+

@@ -18,7 +18,7 @@ namespace Generic.Controllers
         [HttpGet]
         public string Ping()
         {
-            return Environment.MachineName.ToString();
+            return string.Format("{0} - {1}, {2}", Environment.MachineName, Environment.UserDomainName, Environment.UserName);
         }
 
         public IEnumerable<Employee> Get()

@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,11 @@ namespace Generic.MVC.Controllers
 {
     public class EmployeesController : Controller
     {
-        private static readonly string uri = "http://zixer.azurewebsites.net/api/values/";
+        private readonly string uri;
+        public EmployeesController()
+        {
+            uri = ConfigurationManager.AppSettings["GENERIC-API-URL"];
+        }
 
 
         // GET: Employees
