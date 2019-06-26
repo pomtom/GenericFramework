@@ -272,11 +272,15 @@
     <Content Include="Content\bootstrap-theme.css.map" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Dockerfile" />
+    <None Include="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include=".dockerignore">
       <DependentUpon>Dockerfile</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\zixer - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\zixer - Web Deploy.pubxml" />
   </ItemGroup>
