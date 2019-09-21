@@ -2,6 +2,7 @@
 using Generic.Database.Poco;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Web.Http;
 
 namespace Generic.Controllers
@@ -20,6 +21,17 @@ namespace Generic.Controllers
         {
             return string.Format("{0} - {1}, {2}", Environment.MachineName, Environment.UserDomainName, Environment.UserName);
         }
+
+        [HttpGet]
+        public string Fire()
+        {
+            using (StreamWriter _testData = new StreamWriter(System.Web.HttpContext.Current.Server.MapPath("~/data.txt"), true))
+            {
+                _testData.WriteLine("Hello i am here"); // Write the file.
+            }
+            return "Fire executed";
+        }
+
 
         public IEnumerable<Employee> Get()
         {
