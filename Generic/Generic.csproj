@@ -289,7 +289,6 @@
     <None Include="Properties\PublishProfiles\zixerapi - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\zixerapp - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\zixerapp - ReadOnly - FTP.pubxml" />
-    <None Include="Properties\PublishProfiles\zixerapp - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Generic.Business\Generic.Business.csproj">

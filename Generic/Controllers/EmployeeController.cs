@@ -4,6 +4,8 @@ using Generic.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 
 namespace Generic.Controllers
@@ -39,32 +41,54 @@ namespace Generic.Controllers
         [BasicAuthentication]
         [Route("")]
         [HttpGet]
-        public IEnumerable<Employee> GetAll()
+        public HttpResponseMessage GetAll()
         {
             try
             {
                 var response = _employeeservice.GetAllEmployee();
-                return response;
+                return Request.CreateResponse(HttpStatusCode.OK, response);
+
             }
             catch (Exception ex)
             {
-                throw ex;
+                string msg = string.Empty;
+                if (ex.InnerException != null)
+                {
+                    msg = ex.InnerException.Message;
+                }
+                else
+                {
+                    msg = ex.Message;
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 
         [BasicAuthentication]
         [Route("Employee/{id}")]
         [HttpGet]
-        public Employee Get(int id)
+        public HttpResponseMessage Get(int id)
         {
             try
             {
-                return _employeeservice.GetEmployeeById(id);
+
+                var response = _employeeservice.GetEmployeeById(id);
+                return Request.CreateResponse(HttpStatusCode.OK, response);
+
+
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                string msg = string.Empty;
+                if (ex.InnerException != null)
+                {
+                    msg = ex.InnerException.Message;
+                }
+                else
+                {
+                    msg = ex.Message;
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 
@@ -72,50 +96,109 @@ namespace Generic.Controllers
         [BasicAuthentication]
         [Route("Employee/Create")]
         [HttpPost]
-        public void Post([FromBody]Employee value)
+        public HttpResponseMessage Post([FromBody]Employee value)
         {
             try
             {
                 _employeeservice.InsertEmployeeUsingSP(value);
+                var response = _employeeservice.GetAllEmployee();
+                return Request.CreateResponse(HttpStatusCode.OK, response);
+                
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                string msg = string.Empty;
+                if (ex.InnerException != null)
+                {
+                    msg = ex.InnerException.Message;
+                }
+                else
+                {
+                    msg = ex.Message;
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 
         [BasicAuthentication]
         [Route("Employee/Update")]
         [HttpPut]
-        public void Put([FromBody]Employee value)
+        public HttpResponseMessage Put([FromBody]Employee value)
         {
             try
             {
                 _employeeservice.UpdateEmployee(value);
+                var response = _employeeservice.GetAllEmployee();
+                return Request.CreateResponse(HttpStatusCode.OK, response);
+
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                string msg = string.Empty;
+                if (ex.InnerException != null)
+                {
+                    msg = ex.InnerException.Message;
+                }
+                else
+                {
+                    msg = ex.Message;
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
 
         [BasicAuthentication]
         [Route("Employee/Delete/{id}")]
         [HttpDelete]
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
             try
             {
                 _employeeservice.DeleteEmployee(id);
+                var response = _employeeservice.GetAllEmployee();
+                return Request.CreateResponse(HttpStatusCode.OK, response);
+
             }
             catch (Exception ex)
             {
-
-                throw ex;
+                string msg = string.Empty;
+                if (ex.InnerException != null)
+                {
+                    msg = ex.InnerException.Message;
+                }
+                else
+                {
+                    msg = ex.Message;
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
             }
         }
+
+
+        [BasicAuthentication]
+        [Route("postparam/{a}/{b}")]
+        [HttpPost]
+        public HttpResponseMessage PostParam(string a, string b)
+        {
+            try
+            {
+                return Request.CreateResponse(HttpStatusCode.OK, a + " " + b);
+            }
+            catch (System.Exception ex)
+            {
+                string msg = string.Empty;
+                if (ex.InnerException != null)
+                {
+                    msg = ex.InnerException.Message;
+                }
+                else
+                {
+                    msg = ex.Message;
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex);
+            }
+        }
+
 
     }
 }
