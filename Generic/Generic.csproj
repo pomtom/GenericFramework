@@ -208,6 +208,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\BasicAuthenticationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -240,7 +241,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -257,7 +260,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.min.css.map" />
@@ -283,6 +285,11 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\zixer - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\zixer - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\zixerapi - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\zixerapi - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\zixerapp - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\zixerapp - ReadOnly - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\zixerapp - Web Deploy.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Generic.Business\Generic.Business.csproj">

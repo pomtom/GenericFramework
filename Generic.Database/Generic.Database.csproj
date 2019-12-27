@@ -49,9 +49,12 @@
   <ItemGroup>
     <Compile Include="GenericDbContext.cs" />
     <Compile Include="Poco\Employee.cs" />
+    <Compile Include="Poco\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EmployeeRepository.cs" />
     <Compile Include="Repository\IEmployeeRepository.cs" />
+    <Compile Include="Repository\IUserRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -1,5 +1,6 @@
 ﻿using Generic.Business.Service;
 using Generic.Database.Poco;
+using Generic.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -35,6 +36,7 @@ namespace Generic.Controllers
             return "Fire executed";
         }
 
+        [BasicAuthentication]
         [Route("")]
         [HttpGet]
         public IEnumerable<Employee> GetAll()
@@ -50,6 +52,7 @@ namespace Generic.Controllers
             }
         }
 
+        [BasicAuthentication]
         [Route("Employee/{id}")]
         [HttpGet]
         public Employee Get(int id)
@@ -65,6 +68,8 @@ namespace Generic.Controllers
             }
         }
 
+
+        [BasicAuthentication]
         [Route("Employee/Create")]
         [HttpPost]
         public void Post([FromBody]Employee value)
@@ -80,6 +85,7 @@ namespace Generic.Controllers
             }
         }
 
+        [BasicAuthentication]
         [Route("Employee/Update")]
         [HttpPut]
         public void Put([FromBody]Employee value)
@@ -95,6 +101,7 @@ namespace Generic.Controllers
             }
         }
 
+        [BasicAuthentication]
         [Route("Employee/Delete/{id}")]
         [HttpDelete]
         public void Delete(int id)
@@ -109,5 +116,6 @@ namespace Generic.Controllers
                 throw ex;
             }
         }
+
     }
 }

@@ -3,6 +3,7 @@ using Autofac.Integration.WebApi;
 using Generic.Business.Service;
 using Generic.Database;
 using Generic.Database.Repository;
+using Generic.Models;
 using System.Data.Entity;
 using System.Reflection;
 using System.Web.Http;
@@ -49,6 +50,12 @@ namespace Generic.App_Start
 
             builder.RegisterType<EmployeeService>()
             .As<IEmployeeService>();
+
+            builder.RegisterType<UserRepository>()
+            .As<IUserRepository>();
+
+            builder.RegisterType<UserService>()
+            .As<IUserService>();
 
 
             //Set the dependency resolver to be Autofac.  
