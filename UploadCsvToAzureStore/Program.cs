@@ -25,6 +25,38 @@ namespace UploadCsvToAzureStore
             //InsertIntoTableStorage();
         }
 
+        static void InsertIntoTableStorage()
+        {
+            string[] csvFileList = new string[]
+           {
+                @"C:\temp\ScriptReview.csv",
+           };
+            int customerId = 0;
+
+            foreach (var csvFile in csvFileList)
+            {
+                var parser = new TextFieldParser(csvFile, Encoding.UTF8);
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                parser.HasFieldsEnclosedInQuotes = true;
+                parser.TrimWhiteSpace = true;
+
+                var customerList = new List<Customer>();
+
+                while (!parser.EndOfData)
+                {
+                    string[] row = parser.ReadFields();
+                    bool isHeader = (row[0] == "Qualification");
+                    if (isHeader)
+                        continue;
+
+                    var customer = new Customer(row);
+                    customer.Id = ++customerId;
+                    customerList.Add(customer);
+                }
+                Insert(customerList, Path.GetFileNameWithoutExtension(csvFile));
+            }
+        }
         static void Insert(IEnumerable<Customer> customerList, string partitionKey)
         {
             Insert(customerList.Select(customer =>
