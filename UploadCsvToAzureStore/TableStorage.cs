@@ -28,7 +28,7 @@ namespace UploadCsvToAzureStore
             //https://docs.microsoft.com/en-us/rest/api/storageservices/table-service-error-codes
             // Retrieve the storage account from the connection string.
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
-                CloudConfigurationManager.GetSetting("StorageConnectionString"));
+                CloudConfigurationManager.GetSetting("AzureStorageConnectionString"));
 
             // Create the table client.
             CloudTableClient tableClient = storageAccount.CreateCloudTableClient();

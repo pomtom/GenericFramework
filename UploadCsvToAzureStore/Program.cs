@@ -17,6 +17,11 @@ namespace UploadCsvToAzureStore
         private static readonly CloudStorageAccount cloudStorageAccount = CloudStorageAccount.Parse(ConfigurationManager.AppSettings["AzureStorageConnectionString"]);
         static void Main(string[] args)
         {
+            string TableName = "CustomerTable";
+            TableStorage t = new TableStorage(TableName);
+            List<CustomerTableEtntity> listTableFileItem = t.GetAll<CustomerTableEtntity>("ScriptReview");
+
+            var vr = listTableFileItem.Where(a => a.Qualification.Equals("IxTestSubject") && a.Status.Equals("Result pending")).ToList();
             //InsertIntoTableStorage();
         }
 
