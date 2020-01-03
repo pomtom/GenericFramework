@@ -24,6 +24,7 @@ namespace TableStore
         /// <param name="TableName">Name of the table.</param>
         public TableStorage(string TableName)
         {
+            //https://docs.microsoft.com/en-us/rest/api/storageservices/table-service-error-codes
             // Retrieve the storage account from the connection string.
             CloudStorageAccount storageAccount = CloudStorageAccount.Parse(
                 CloudConfigurationManager.GetSetting("StorageConnectionString"));
