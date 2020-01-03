@@ -1,12 +1,16 @@
 ﻿using System.Collections.Generic;
-
+using System;
 namespace TableStore
 {
     class Program
     {
         static void Main(string[] args)
         {
-            EmployeeMethod();
+            //https://www.codeproject.com/Tips/629447/Generic-wrapper-for-the-Azure-TableService
+
+             EmployeeMethod();
+            //DomeDataMethod();
+            Console.ReadKey();
         }
         public static void EmployeeMethod()
         {
@@ -22,15 +26,16 @@ namespace TableStore
 
             Employee emp1 = new Employee("Contract", "pramod@gmail.com");
             emp1.Address = "Bradford";
-            emp1.BirthDate = new System.DateTime();
             emp1.Name = "Pramod";
 
-            Employee emp2 = new Employee("Contract", "sachin@gmail.com") { Name = "sachin", Address = "Sangola", BirthDate = new System.DateTime() };
-            Employee emp3 = new Employee("Contract", "deepak@gmail.com") { Name = "deepak", Address = "Mumbai", BirthDate = new System.DateTime() };
-            Employee emp4 = new Employee("Permenent", "nana@gmail.com") { Name = "nana", Address = "Mumbai", BirthDate = new System.DateTime() };
-            Employee emp5 = new Employee("Permenent", "jana@gmail.com") { Name = "Jana", Address = "Mumbai", BirthDate = new System.DateTime() };
-
             t.Insert<Employee>(emp1);
+
+            Employee emp2 = new Employee("Contract", "sachin@gmail.com") { Name = "sachin", Address = "Sangola" };
+            Employee emp3 = new Employee("Contract", "deepak@gmail.com") { Name = "deepak", Address = "Mumbai" };
+            Employee emp4 = new Employee("Permenent", "nana@gmail.com") { Name = "nana", Address = "Mumbai" };
+            Employee emp5 = new Employee("Permenent", "jana@gmail.com") { Name = "Jana", Address = "Mumbai" };
+
+
             t.Insert<Employee>(emp2);
             t.Insert<Employee>(emp3);
             t.Insert<Employee>(emp4);

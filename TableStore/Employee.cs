@@ -9,17 +9,14 @@ namespace TableStore
 
         public string Address { get; set; }
 
-        public DateTime BirthDate { get; set; }
-
         public Employee()
         {
         }
 
-        public Employee(string emptype, string email)
+        public Employee(string PartitionKey, string RowKey)
         {
-            this.PartitionKey = emptype;
-            this.RowKey = email;
-            this.ETag = new Guid().ToString();
+            this.PartitionKey = PartitionKey;
+            this.RowKey = RowKey;
         }
     }
 }
