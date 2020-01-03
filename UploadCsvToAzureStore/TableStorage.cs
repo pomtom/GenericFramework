@@ -2,8 +2,9 @@
 using Microsoft.Azure.Cosmos.Table;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
-namespace TableStore
+namespace UploadCsvToAzureStore
 {
     /// <summary>
     /// Simple Table storage generic helper class
@@ -84,12 +85,12 @@ namespace TableStore
         public List<T> GetAll<T>(string PartitionKey) where T : TableEntity
         {
             // Construct the query operation for all customer entities where PartitionKey="Smith".
-            TableQuery<Employee> query = new TableQuery<Employee>().Where(
-              TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, PartitionKey));
+            TableQuery<CustomerTableEtntity> query = new TableQuery<CustomerTableEtntity>()
+                .Where(TableQuery.GenerateFilterCondition("PartitionKey", QueryComparisons.Equal, PartitionKey));
 
             List<T> Results = new List<T>();
             // Print the fields for each customer.
-            foreach (Employee entity in table.ExecuteQuery(query))
+            foreach (CustomerTableEtntity entity in table.ExecuteQuery(query))
             {
                 Results.Add(entity as T);
                 //Console.WriteLine("{0}, {1}\t{2}\t{3}", entity.PartitionKey, entity.RowKey,
